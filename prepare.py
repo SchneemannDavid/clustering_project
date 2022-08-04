@@ -97,6 +97,7 @@ def optimize_types(df):
     df["bedroomcnt"] = df["bedroomcnt"].astype(int)    
     df["taxvaluedollarcnt"] = df["taxvaluedollarcnt"].astype(int)
     df["calculatedfinishedsquarefeet"] = df["calculatedfinishedsquarefeet"].astype(int)
+    df["assessmentyear"] = df["assessmentyear"].astype(int)
     return df
 
 
@@ -212,15 +213,4 @@ def prep_zillow(df):
     # df.to_csv("zillow.csv", index=False)
 
     return df, train, validate, test, x_train, y_train, x_validate, y_validate, x_test, y_test
-
-
-# ----------------------------------------------------------- # 
-
-############## Regression Project acquire.py for reference (now: only what remains after transfer to new file above!)
-
-def handle_nulls(df):    
-    # We keep 99.41% of the data after dropping nulls
-    # round(df.dropna().shape[0] / df.shape[0], 4) returned .9941
-    df = df.dropna()
-    return df
 

@@ -1,5 +1,5 @@
 import pandas as pd
-import numpy as np
+import numpy as np 
 import os
 from env import user, password, host
 
