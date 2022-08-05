@@ -67,7 +67,10 @@ def drop_bad_columns(df):
         'airconditioningdesc',
         'heatingorsystemdesc',
         'threequarterbathnbr',
-        'calculatedbathnbr'
+        'calculatedbathnbr',
+        'regionidcounty',
+        'propertylandusedesc',
+        'assessmentyear'
         ], 
         axis=1)
     return df
@@ -98,7 +101,6 @@ def optimize_types(df):
     df["bedroomcnt"] = df["bedroomcnt"].astype(int)    
     df["taxvaluedollarcnt"] = df["taxvaluedollarcnt"].astype(int)
     df["calculatedfinishedsquarefeet"] = df["calculatedfinishedsquarefeet"].astype(int)
-    df["assessmentyear"] = df["assessmentyear"].astype(int)
     return df
 
 
@@ -147,6 +149,9 @@ def feature_engineering(df):
                        labels = ['LA','Orange','Ventura'])
     # Binning censustractandblock by qcut (quadcut): [for plotting]
     df['census_quarter_bin'] = pd.qcut(df['censustractandblock'],q=4)
+
+    df['age_bin'] = pd.cut(df.age, 
+                           bins = [0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140],labels = [0, .066, .133, .20, .266, .333, .40, .466, .533, .60, .666, .733, .8, .866, .933])
 
     df = df.dropna()
 
