@@ -66,7 +66,8 @@ def drop_bad_columns(df):
         'threequarterbathnbr',
         'airconditioningdesc',
         'heatingorsystemdesc',
-        'threequarterbathnbr'
+        'threequarterbathnbr',
+        'calculatedbathnbr'
         ], 
         axis=1)
     return df
@@ -114,7 +115,8 @@ def handle_outliers(df):
 def clean_variables(df):
     # Drop 'taxamount' column (variable is inconsistent based on time and location of collected value, could lead to poor analysis)
     # Rename columns and 'fips' values to reflect actual location (to solidify column as categorical variable)
-    df = df.drop(columns = 'taxamount')
+    df = df.drop(columns = ['taxamount','id','parcelid'])
+    
     df = df.rename(columns = {'bedroomcnt':'bedrooms', 
                               'bathroomcnt':'bathrooms', 
                               'calculatedfinishedsquarefeet':'sq_ft', 
@@ -134,6 +136,17 @@ def feature_engineering(df):
     df["decade_built"] = pd.cut(x=df["year_built"], bins=[1800, 1899, 1909, 1919, 1929, 1939, 1949, 1959, 1969, 1979, 1989, 1999, 2009], labels=['1800s', '1900s', '10s', '20s', '30s', '40s', '50s', '60s', '70s', '80s', '90s', '2000s'])
     # Convert categorical variable to numeric var
     df['county_encoded'] = df.location.map({'LA County': 0, 'Orange County': 1, 'Ventura County': 2})
+    # Create feature for age of a home
+    df['age'] = 2017 - df.year_built
+    # Bin censustractandblock by county
+    df['censustract_bin'] = pd.cut(df.censustractandblock, bins = [0, 60380000000000, 60600000000000, 70000000000000 ], labels = [0,1,2])
+    # ratio of bathrooms to bedrooms
+    df['bath_bed_ratio'] = df.bathrooms/df.bedrooms
+    # binning by censustractandblock divided by county
+    df['census_county_bin'] = pd.cut(df.censustractandblock, bins = [0, 60380000000000, 60600000000000, 70000000000000], 
+                       labels = ['LA','Orange','Ventura'])
+    # Binning censustractandblock by qcut (quadcut): [for plotting]
+    df['census_quarter_bin'] = pd.qcut(df['censustractandblock'],q=4)
 
     df = df.dropna()
 
