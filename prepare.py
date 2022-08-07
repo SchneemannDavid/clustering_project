@@ -112,6 +112,8 @@ def handle_outliers(df):
 
     df = df[df.taxvaluedollarcnt < 1_500_000]
 
+    df = df[df.lotsizesquarefeet < 700_000]
+
     return df
 
 def clean_variables(df):

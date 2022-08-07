@@ -1,29 +1,29 @@
-# Predicting Home Value for Zillow
+# Predicting Log Error for Zillow
 
 
 ## About the Project
 ### Project Goals
 
-My goal with this project is to identify Zillow's key drivers of home value and to provide insight into why and how these factors are producing certain home values. With this information and the following recommendations, our organization can work together to improve business processes and procedures in order to more accurately predict home values moving forward.
+My goal with this project is to identify Zillow's key drivers of logerror and to provide insight into why and how these factors are producing certain log errors. With this information and the following recommendations, our organization can work together to improve business processes and procedures in order to more accurately predict home values and log error moving forward.
 
 
 ### Project Description
 
-At Zillow, the ability to predict home value is essential as new homes are built each year and some existing homes don't currently have assessed value within this database.
+At Zillow, the ability to predict logerror is essential for measuring the error of a home value prediction within this database.
 
-In order to more accurately predict home value, we will analyze the attributes (features) of homes within a predetermined set of data. This dataset includes Single Family Properties that had a transaction during 2017.
-We will then develop models for predicting home value based on these attributes and provide recommendations and predictions to Zillow for improving prediction of home values moving forward.
+In order to more accurately predict log error, we will analyze the attributes (features) of homes within a predetermined set of data. This dataset includes Single Family Properties that had a transaction during 2017.
+We will then develop models for predicting log error based on these attributes and provide recommendations and predictions to Zillow for improving prediction of log error moving forward.
 
 
 ### Initial Questions
 
-#### 1. Does a higher number of bedrooms increase home value?
+#### 1. Does a higher number of bedrooms increase logerror?
 
-#### 2. Does a higher number of bathrooms increase home value?
+#### 2. Does a higher number of bathrooms increase logerror?
 
-#### 3. Do more garage spaces increase home value?
+#### 3. Do more garage spaces increase logerror?
 
-#### 4. Does county location affect home value?
+#### 4. Is logerror significantly different for properties in LA County vs Orange County vs Ventura County?
 
 #### 5. Does a higher square footage increase home value?
 
@@ -33,23 +33,19 @@ We will then develop models for predicting home value based on these attributes 
 
 | Variable      | Meaning |
 | ----------- | ----------- |
+| logerror      | The measured log error of a home       |
 | home_value      | The total tax assessed value of the parcel       |
 | bedrooms   | The total number of bedrooms in a home        |
 | bathrooms      | The total number of bathrooms in a home       |
 | garage_spaces      | The total number of car slots in a garage       |
 | year_built      | The year the home was built       |
+| age      | The age of the home       |
 | location      | Location of a home by county      |
 | sq_ft      | The total square feet of a home       |
 | lot_sq_ft      | The total square feet of a property lot       |
-| aaa   | The decade in which the home was built       |
-| bbb      | Location of a home by county      |
-| ccc      | The total square feet of a home       |
-| lot_sq_ft      | The total square feet of a property lot       |
-| decade_built   | The decade in which the home was built       |
-| location      | Location of a home by county      |
-| sq_ft      | The total square feet of a home       |
-| lot_sq_ft      | The total square feet of a property lot       |
-| decade_built   | The decade in which the home was built       |
+| latitude   | Location using the latitudenal metric        |
+| longitude      | Location using the longitudenal metric       |
+| bath_bed_ratio      | Ratio of bathrooms to bedrooms of a home       |
 
 
 ### Steps to Reproduce
@@ -108,7 +104,7 @@ Below, I walk through all stages of my pipeline and process.
 
 ### Conclusion
 
-#### Summary
+#### Summary [EDIT]
 
 In seeking solutions to more accurately predict home value for Zillow, we have explored a multiplicity of factors in the dataset that affect home value. We have shown that some potential primary drivers of home value are :
 
@@ -122,7 +118,7 @@ The correlation of these features with home value, combined within our analysis 
 
 Having fit the best performing model to our train, validate, and test datasets, we expect this model to perform 19.5% better than our baseline in the future on data it has not seen, given no major changes to our data source.
 
-#### Recommendations
+#### Recommendations[EDIT]
 
 There are a number of recommendations that can be offered based on the above analysis. These suggestions are tied to the findings within our primary drivers of home value:
 
@@ -130,7 +126,7 @@ There are a number of recommendations that can be offered based on the above ana
 2. Kitchen data, namely which major appliances and amenities are available in a given home. (ie. dishwasher, kitchen island, etc.)
 3. In collecting more nuanced data about a home, I suggest we send out email surveys prompting home owners with limited data on their home in the Zillow database to provide additional details about their residence.
 
-#### Next Steps
+#### Next Steps[EDIT]
 
 Despite the overall effectiveness of our best-performing model, there is always room for improvement and optimization. \
 If given more time to pursue a better results, I would begin by conducting further exploration and analysis of other features within our dataset. These features could include:

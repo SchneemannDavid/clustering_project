@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 #Define function to scale all data based on the train subset
 def scale_data(train, validate, test):
     
-    scale_columns = ['bedrooms', 'bathrooms', 'garage_spaces', 'sq_ft']
+    scale_columns = ['bedrooms', 'bathrooms', 'garage_spaces', 'sq_ft', 'lot_sq_ft']
     
     train_scaled = train.copy()
     validate_scaled = validate.copy()
