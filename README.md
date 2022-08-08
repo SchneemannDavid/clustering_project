@@ -90,9 +90,9 @@ Below, I walk through all stages of my pipeline and process.
 ##### Clustering Exploration
 
 1. Goal is 3 distinct clusters \
-  a. 
-  b. 
-  c. 
+  a. Does bedroom, bathroom, and garage space count affect log error?
+  b. Does location, latitude, and longitude affect log error?
+  c. Do sqft, lot_sq_ft, and bath_bed_ratio affect log error?
 2. Multiple questions will be asked for each cluster, exploring through visualizations, calling explore.py as needed \
 3. Summary includes key takeaways from all features explored \
 
@@ -113,9 +113,9 @@ Below, I walk through all stages of my pipeline and process.
 
 ### Conclusion
 
-#### Summary [EDIT]
+#### Summary
 
-In seeking solutions to more accurately predict home value for Zillow, we have explored a multiplicity of factors in the dataset that affect home value. We have shown that some potential primary drivers of home value are :
+In seeking solutions to more accurately predict log error for Zillow, we have explored a multiplicity of factors in the dataset that affect log error. We have shown that some potential primary drivers of log error are :
 
 - The number of bedrooms in a home
 - The number of bathrooms in a home 
@@ -123,28 +123,28 @@ In seeking solutions to more accurately predict home value for Zillow, we have e
 - The location of a home by county
 - The square footage of a home
 
-The correlation of these features with home value, combined within our analysis and models, expresses confidence in the validity of our findings. We have created robust models that perform significantly better than our baseline estimated error of 270,460.
+In addition to these more self-evident factors, we have created meaningful clusters using Kmeans in order to create better predictions. These clusters include:
 
-Having fit the best performing model to our train, validate, and test datasets, we expect this model to perform 19.5% better than our baseline in the future on data it has not seen, given no major changes to our data source.
+- The number of bedrooms and bathrooms, and the age of a home
+- Latitude, longitude, and location by county
 
-#### Recommendations[EDIT]
+The correlation of these features and our newly created clusters with log error, combined within our analysis and models, expresses confidence in the validity of our findings. We have created models that perform slightly better than our baseline of 0.169.
 
-There are a number of recommendations that can be offered based on the above analysis. These suggestions are tied to the findings within our primary drivers of home value:
+Having fit the best performing model to our train, validate, and test datasets, we expect this model to perform 0.14% better than our baseline in the future on data it has not seen, given no major changes to our data source.
 
-1. Based on our exploration of bedroom and bathroom counts, collecting additional data on how many rooms are in a home, including more specific data on living spaces versus kitchens and other spaces
-2. Kitchen data, namely which major appliances and amenities are available in a given home. (ie. dishwasher, kitchen island, etc.)
-3. In collecting more nuanced data about a home, I suggest we send out email surveys prompting home owners with limited data on their home in the Zillow database to provide additional details about their residence.
+#### Recommendations
 
-#### Next Steps[EDIT]
+There are a number of recommendations that can be offered based on the above analysis. These suggestions are tied to the relative lack in performance within our primary drivers and clusters when predicting logerror:
 
-Despite the overall effectiveness of our best-performing model, there is always room for improvement and optimization. \
-If given more time to pursue a better results, I would begin by conducting further exploration and analysis of other features within our dataset. These features could include:
-- Whether a home has a pool
-- The square footage of the property, not just the home
+1. I recommend that Zillow considers collecting more data on location-driven features such as proximity of local schools, emergency services such as police and fire stations, and local parks and recreational areas.
+2. Based on our exploration of clusters that affect log error, I recommend Zillow further investigate and extrapolate on clustering techniques in order to better predict log error.
 
-In addition to exploring other features, I would look into methods for more appropriately separating our data into additional housing categories. For example:
-- Calculating a ratio of home square footage against square footage of the entire property. This home to property ratio could be valuable.
-- Narrowing a home's location to pinpoint the city and specific neighborhood a home is in. 
+#### Next Steps
 
-By optimizing our dataset to include the above categories, I believe we could increase the correlation of our feature set with home value and improve model prediction accuracy.
+Considering the overall lack in effectiveness of our best-performing model, there is certainly room for improvement and optimization. \
+If given more time to pursue a better results, I would begin by conducting further exploration and analysis of the clusters I created for our dataset. This could include:
+- Exploring census data further in order to better identify specific neighborhoods instead of simply analyzing at the county level.
+- Re-calibrating my cluster based on home size by exploring more appropriate features to include.
+
+By optimizing our dataset to include the above categories, I believe we could increase the correlation of our feature set with log error and improve model prediction accuracy.
 

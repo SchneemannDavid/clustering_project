@@ -8,7 +8,15 @@ from env import user, password, host
 
 # Clustering prepare file (prepare.py)
 '''
-file description
+This file:
+- Trims outliers
+- Drops extraneous columns
+- Handles nulls 
+- Converts appropriate columns by dtype
+- Cleans and renames variables 
+- Performs feature engineering
+- Splits our data into train, validate and test
+- Creates a csv instance of our df
 '''
 
 
@@ -118,9 +126,9 @@ def handle_outliers(df):
 
 def clean_variables(df):
     # Drop 'taxamount' column (variable is inconsistent based on time and location of collected value, could lead to poor analysis)
-    # Rename columns and 'fips' values to reflect actual location (to solidify column as categorical variable)
     df = df.drop(columns = ['taxamount','id','parcelid'])
     
+    # Rename columns and 'fips' values to reflect actual location (to solidify column as categorical variable)
     df = df.rename(columns = {'bedroomcnt':'bedrooms', 
                               'bathroomcnt':'bathrooms', 
                               'calculatedfinishedsquarefeet':'sq_ft', 
@@ -151,7 +159,7 @@ def feature_engineering(df):
                        labels = ['LA','Orange','Ventura'])
     # Binning censustractandblock by qcut (quadcut): [for plotting]
     df['census_quarter_bin'] = pd.qcut(df['censustractandblock'],q=4)
-
+    # Binning age of a home
     df['age_bin'] = pd.cut(df.age, 
                            bins = [0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140],labels = [0, .066, .133, .20, .266, .333, .40, .466, .533, .60, .666, .733, .8, .866, .933])
 
@@ -230,7 +238,7 @@ def prep_zillow(df):
 
     x_train, y_train, x_validate, y_validate, x_test, y_test = zillow_split_model(df)
 
-    # df.to_csv("zillow.csv", index=False)
+    df.to_csv("zillow.csv", index=False)
 
     return df, train, validate, test, x_train, y_train, x_validate, y_validate, x_test, y_test
 
