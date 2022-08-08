@@ -87,6 +87,15 @@ Below, I walk through all stages of my pipeline and process.
 3. Statistical Testing is conducted on all relevant features to determine statistical significance \
 4. Summary includes key takeaways from all features explored \
 
+##### Clustering Exploration
+
+1. Goal is 3 distinct clusters \
+  a. 
+  b. 
+  c. 
+2. Multiple questions will be asked for each cluster, exploring through visualizations, calling explore.py as needed \
+3. Summary includes key takeaways from all features explored \
+
 #### Modeling and Evaluate
 ##### Modules (model.py)
 
